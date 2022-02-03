@@ -1,11 +1,12 @@
 const mysql = require('mysql2');
 const constants = require('./constants');
 
-const connection = mysql.createConnection({
-    host: constants.host,
-    user: constants.user,
-    database: constants.database,
-    password: constants.password,
+const Sequelize = require('sequelize');
+
+const sequelize = new Sequelize(constants.database, constants.user, constants.password, {
+    dialect: 'mysql',
+    host: constants.host
 });
 
-module.exports = connection.promise();
+module.exports = sequelize;
+
